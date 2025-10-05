@@ -73,7 +73,7 @@ This file performs:
 This script:
 
 - Cleans and scales the CTG dataset
-- Trains multiple models (Logistic Regression, Random Forest, XGBoost, LightGBM, CatBoost, Neural Net)
+- Trains multiple models (Logistic Regression, Random Forest, XGBoost, LightGBM, Neural Net)
 - Evaluates each using:
   - Balanced Accuracy
   - Macro F1 Score
