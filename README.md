@@ -11,9 +11,7 @@ The goal is to design an automated pipeline that can process raw CTG data, clean
 
 ## 🧭 Repository Structure
 
-> Datathon-2025/
-│
-├── README.md
+> Datathon-2025/  │  ├── README.md
 ├── report.docx ← Academic report (methodology + findings)
 │
 ├── data_exploration/
