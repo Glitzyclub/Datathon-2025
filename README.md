@@ -14,27 +14,27 @@ The goal is to design an automated pipeline that can process raw CTG data, clean
 > Datathon-2025/ \
 │ \
 ├── README.md \
-├── report.docx ← Academic report (methodology + findings)
-│
-├── data_exploration/
-│ ├── ctg_exploration.ipynb ← Exploratory data analysis & visualization
-│ └── ctg_cleaning.py ← Data preprocessing & feature scaling
-│
-├── training/
-│ └── train_model.py ← Main model training script
-│
-├── models/
-│ ├── nn_model.pt ← Saved neural net weights
-│ ├── rf_model.pt ← Saved RandomForest weights
-│ └── scaler.pkl ← Fitted StandardScaler for inference
-│
-├── inference/
-│ └── inference.py ← Predicts fetal state on new CTG samples
-│
-└── misc/
-├── confusion_matrix.png
-├── feature_importance.png
-└── model_comparison.csv
+├── report.docx ← Academic report (methodology + findings) \
+│ \ 
+├── data_exploration/ \ 
+│ ├── ctg_exploration.ipynb ← Exploratory data analysis & visualization \ 
+│ └── ctg_cleaning.py ← Data preprocessing & feature scaling \ 
+│ \ 
+├── training/ \ 
+│ └── train_model.py ← Main model training script \ 
+│ \ 
+├── models/ \ 
+│ ├── nn_model.pt ← Saved neural net weights \ 
+│ ├── rf_model.pt ← Saved RandomForest weights \ 
+│ └── scaler.pkl ← Fitted StandardScaler for inference \ 
+│ \ 
+├── inference/ \ 
+│ └── inference.py ← Predicts fetal state on new CTG samples \ 
+│ \ 
+└── misc/ \ 
+├── confusion_matrix.png \ 
+├── feature_importance.png \ 
+└── model_comparison.csv \ 
 
 
 ## ⚙️ Installation & Setup
