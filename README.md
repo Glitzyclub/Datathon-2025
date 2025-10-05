@@ -53,68 +53,51 @@ pip install -r requirements.txt
 Open the notebook:
 
 > data_exploration/ctg_exploration.ipynb
+
 This file performs:
 
- - Data visualization and feature analysis
+- Data visualization and feature analysis
+- Correlation heatmaps
+- Missing value checks
+- Skew correction and scaling
 
- - Correlation heatmaps
+### 🧠 Step 2: Train Models
 
-Missing value checks
-
-Skew correction and scaling
-
-🧠 Step 2: Train Models
-bash
-Copy code
 python training/train_model.py
+
 This script:
 
-Cleans and scales the CTG dataset
+- Cleans and scales the CTG dataset
+- Trains multiple models (Logistic Regression, Random Forest, XGBoost, LightGBM, CatBoost, Neural Net)
+- Evaluates each using:
+  - Balanced Accuracy
+  - Macro F1 Score
+- Saves the best-performing models under /models/.
 
-Trains multiple models (Logistic Regression, Random Forest, XGBoost, LightGBM, CatBoost, Neural Net)
-
-Evaluates each using:
-
-Balanced Accuracy
-
-Macro F1 Score
-
-Saves the best-performing models under /models/.
-
-🔎 Step 3: Run Inference
+### 🔎 Step 3: Run Inference
 Once trained, test the model on new unseen data:
 
-bash
-Copy code
-python inference/inference.py
+> python inference/inference.py
+
 This script:
 
-Loads the saved model and scaler
+- Loads the saved model and scaler
+- Processes new CTG samples
+- Outputs predicted fetal states (0 = Normal, 1 = Suspect, 2 = Pathologic)
 
-Processes new CTG samples
-
-Outputs predicted fetal states (0 = Normal, 1 = Suspect, 2 = Pathologic)
-
-📊 Model Performance Summary
+## 📊 Model Performance Summary
 Model	Balanced Accuracy	Macro F1	Key Observation
 Logistic Regression	0.87	0.86	Good interpretability
 Random Forest	0.97	0.98	Strong overall performance
 XGBoost	0.96	0.97	Slightly better minority class handling
 Neural Net (MLP)	0.74	0.78	Underperforms due to data imbalance
 
-💡 Insights
+## 💡 Insights
 Most false negatives occur when Suspect cases are predicted as Normal, aligning with real-world clinical ambiguity.
 
 Tree-based models (RF, XGB) outperform the neural net on limited data.
 
 Logistic Regression provides interpretability, aiding in explainable AI reporting.
 
-🩻 Future Work
-Implement real-time CTG signal processing
 
-Explore deep learning models (e.g., LSTM for time series CTG signals)
-
-Integrate feature selection and interpretability dashboards
-
-Develop an end-user application for hospital integration
 
