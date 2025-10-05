@@ -14,6 +14,7 @@ The goal is to design an automated pipeline that can process raw CTG data, clean
 > Datathon-2025/ \
 │ \
 ├── README.md \
+├── requirements.txt \
 ├── report.docx ← Academic report (methodology + findings) \
 │ \
 ├── data_exploration/ \
