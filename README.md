@@ -172,11 +172,6 @@ The project includes comprehensive visualizations:
 - ROC curves and confusion matrices
 - Bayesian optimization convergence plots
 
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 📚 References
 
 1. UCI Machine Learning Repository - Cardiotocography Dataset
