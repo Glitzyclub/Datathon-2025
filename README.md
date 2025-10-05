@@ -24,9 +24,13 @@ The goal is to design an automated pipeline that can process raw CTG data, clean
 │ └── train_model.py ← Main model training script \
 │ \
 ├── models/ \
-│ ├── nn_model.pt ← Saved neural net weights \
-│ ├── rf_model.pt ← Saved RandomForest weights \
-│ └── scaler.pkl ← Fitted StandardScaler for inference \
+│ ├── lr_model.pt ← Saved Logistic Regression model weights (used for interpretable baseline) \
+│ ├── rf_model.pt   ← Saved Random Forest model weights (ensemble-based model) \
+│ └── xgb_model.pt  ← Saved XGBoost model weights (boosted trees for strong performance) \
+│ ├── lgb_model.pt  ← Saved LightGBM model weights (lightweight gradient boosting version) \
+│ └── ctb_model.pt  ← Saved CatBoost model weights (handles categorical data efficiently) \
+│ ├── nn_model.pt   ← Saved Neural Network (MLP) weights (deep learning model) \
+│ └── scaler.pkl    ← Fitted StandardScaler for normalizing input features during inference\
 │ \
 ├── inference/ \
 │ └── inference.py ← Predicts fetal state on new CTG samples \
