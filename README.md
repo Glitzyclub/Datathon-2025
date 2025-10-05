@@ -9,11 +9,9 @@ This project was developed for **Datathon 2025**, focusing on the detection and 
 
 The goal is to design an automated pipeline that can process raw CTG data, clean and standardize it, train multiple ML models, and evaluate their performance in identifying fetal health conditions.
 
----
-
 ## 🧭 Repository Structure
 
-Datathon-2025/
+> Datathon-2025/
 │
 ├── README.md
 ├── report.docx ← Academic report (methodology + findings)
@@ -42,25 +40,24 @@ Datathon-2025/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the Repository
-```bash
+
 git clone https://github.com/Glitzyclub/Datathon-2025.git
 cd Datathon-2025
-2️⃣ Install Dependencies
-bash
-Copy code
+
+### 2️⃣ Install Dependencies
+
 pip install -r requirements.txt
-🚀 How to Run
-🧹 Step 1: Data Exploration
+
+## 🚀 How to Run
+### 🧹 Step 1: Data Exploration
 Open the notebook:
 
-bash
-Copy code
-data_exploration/ctg_exploration.ipynb
+> data_exploration/ctg_exploration.ipynb
 This file performs:
 
-Data visualization and feature analysis
+ - Data visualization and feature analysis
 
-Correlation heatmaps
+ - Correlation heatmaps
 
 Missing value checks
 
