@@ -38,10 +38,6 @@ Datathon-2025/
 ├── feature_importance.png
 └── model_comparison.csv
 
-yaml
-Copy code
-
----
 
 ## ⚙️ Installation & Setup
 
