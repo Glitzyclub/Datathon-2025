@@ -41,12 +41,13 @@ The goal is to design an automated pipeline that can process raw CTG data, clean
 
 ### 1️⃣ Clone the Repository
 
-git clone https://github.com/Glitzyclub/Datathon-2025.git
-cd Datathon-2025
+> git clone https://github.com/Glitzyclub/Datathon-2025.git
+>
+> cd Datathon-2025
 
 ### 2️⃣ Install Dependencies
 
-pip install -r requirements.txt
+> pip install -r requirements.txt
 
 ## 🚀 How to Run
 ### 🧹 Step 1: Data Exploration
@@ -63,7 +64,7 @@ This file performs:
 
 ### 🧠 Step 2: Train Models
 
-python training/train_model.py
+> python training/train_model.py
 
 This script:
 
@@ -86,11 +87,12 @@ This script:
 - Outputs predicted fetal states (0 = Normal, 1 = Suspect, 2 = Pathologic)
 
 ## 📊 Model Performance Summary
-Model	Balanced Accuracy	Macro F1	Key Observation
-Logistic Regression	0.87	0.86	Good interpretability
-Random Forest	0.97	0.98	Strong overall performance
-XGBoost	0.96	0.97	Slightly better minority class handling
-Neural Net (MLP)	0.74	0.78	Underperforms due to data imbalance
+|  Model	|  Balanced Accuracy	| Macro F1 | Key Observation |
+| --------|---------------------|----------|-----------------|
+| Logistic Regression |	0.87	| 0.86	| Good interpretability |
+| Random Forest |	0.97 |	0.98	| Strong overall performance |
+| XGBoost |	0.96	|  0.97	| Slightly better minority class handling |
+| Neural Net (MLP) |	0.74 |	0.78 |	Underperforms due to data imbalance |
 
 ## 💡 Insights
 Most false negatives occur when Suspect cases are predicted as Normal, aligning with real-world clinical ambiguity.
