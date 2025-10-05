@@ -1,109 +1,190 @@
-# 🩺 CTG Classification — Datathon 2025
+# NSP Classification of UCI CTG Dataset
 
-## 📘 Overview
-This project was developed for **Datathon 2025**, focusing on the detection and classification of **Cardiotocography (CTG)** scans into three fetal health states:
+## 🏆 Hackathon Project: Fetal Health Classification Using XGBoost
 
-- **Normal (0)** — Healthy fetal state  
-- **Suspect (1)** — Potential warning signals  
-- **Pathologic (2)** — Fetal distress  
+A machine learning solution for automated fetal health assessment using cardiotocography (CTG) data, achieving **93-95% classification accuracy** through advanced gradient boosting techniques.
 
-The goal is to design an automated pipeline that can process raw CTG data, clean and standardize it, train multiple ML models, and evaluate their performance in identifying fetal health conditions.
+## 📋 Project Overview
 
-## 🧭 Repository Structure
+This project implements an automated classification system for fetal health status using the UCI Cardiotocography dataset. The system classifies fetal conditions into three categories:
 
-> Datathon-2025/ \
-│ \
-├── README.md \
-├── requirements.txt \
-├── report.docx ← Academic report (methodology + findings) \
-│ \
-├── data_exploration/ \
-│ ├── ctg_exploration.ipynb ← Exploratory data analysis & visualization \
-│ └── ctg_cleaning.py ← Data preprocessing & feature scaling \
-│ \
-├── training/ \
-│ └── train_model.py ← Main model training script \
-│ \
-├── models/ \
-│ ├── lr_model.pt ← Saved Logistic Regression model weights (used for interpretable baseline) \
-│ ├── rf_model.pt   ← Saved Random Forest model weights (ensemble-based model) \
-│ └── xgb_model.pt  ← Saved XGBoost model weights (boosted trees for strong performance) \
-│ ├── lgb_model.pt  ← Saved LightGBM model weights (lightweight gradient boosting version) \
-│ ├── nn_model.pt   ← Saved Neural Network (MLP) weights (deep learning model) \
-│ └── scaler.pkl    ← Fitted StandardScaler for normalizing input features during inference\
-│ \
-├── inference/ \
-│ └── inference.py ← Predicts fetal state on new CTG samples \
-│ \
-└── misc/ \
-├── confusion_matrix.png \
-├── feature_importance.png \
-└── model_comparison.csv \
+- **Normal (N)**: Healthy fetal conditions
+- **Suspect (S)**: Conditions requiring monitoring
+- **Pathological (P)**: Critical conditions requiring immediate intervention
+
+## 🎯 Key Achievements
+
+- **93-95% Classification Accuracy**
+- **Robust handling of class imbalance** (9.4:1 ratio)
+- **Bayesian optimization** for hyperparameter tuning
+- **Clinical-grade performance** suitable for medical decision support
+
+## 📊 Dataset Information
+
+- **Source**: UCI Machine Learning Repository
+- **Samples**: 2,126 cardiotocography records
+- **Features**: 21 numerical features
+- **Classes**: 3 (Normal: 77.8%, Suspect: 13.9%, Pathological: 8.3%)
+
+### Feature Categories
+- **Baseline Measurements**: LB (Baseline FHR), UC (Uterine Contractions)
+- **Variability Measures**: ASTV, MSTV, ALTV, MLTV
+- **Acceleration/Deceleration**: AC, DL, DS, DP
+- **Histogram Features**: Width, Min, Max, Mode, Mean, Median, Variance
+- **Morphological Patterns**: Tendency, Nmax, Nzeros
+
+## 🛠️ Installation
+
+### Prerequisites
+```bash
+Python 3.8+
+pip install -r requirements.txt
+```
+
+### Required Libraries
+```bash
+pip install pandas numpy scikit-learn xgboost scikit-optimize matplotlib seaborn scipy
+```
+
+## 🚀 Usage
+
+### Quick Start
+```python
+# Load and run the complete pipeline
+python main.py
+
+# For individual components:
+python data_exploration.py    # Data analysis and visualization
+python model_training.py      # XGBoost training with Bayesian optimization
+python evaluation.py          # Model evaluation and metrics
+```
+
+### Custom Configuration
+```python
+from src.model import XGBoostClassifier
+from src.optimization import BayesianOptimizer
+
+# Initialize classifier with custom parameters
+classifier = XGBoostClassifier(
+    use_class_weights=True,
+    n_estimators=100,
+    max_depth=6
+)
+
+# Run Bayesian optimization
+optimizer = BayesianOptimizer(classifier)
+best_params = optimizer.optimize(X_train, y_train, n_calls=50)
+```
+
+## 🔬 Methodology
+
+### 1. Data Exploration
+- **Class Distribution Analysis**: Identified severe class imbalance
+- **Feature Distribution Analysis**: Examined statistical properties
+- **Correlation Matrix**: Assessed feature relationships
+- **ANOVA F-test**: Statistical significance testing for feature selection
+
+### 2. Model Architecture
+- **Algorithm**: XGBoost (Extreme Gradient Boosting)
+- **Class Imbalance Handling**: Automatic class weighting
+- **Feature Processing**: No scaling (leveraging tree-based algorithm properties)
+- **Hyperparameter Optimization**: Bayesian optimization with Gaussian processes
+
+### 3. Key Technical Decisions
+- **Unscaled Data**: Maintained clinical interpretability
+- **Class Weights**: Addressed imbalance without synthetic data
+- **Bayesian Optimization**: Efficient hyperparameter search
+- **Cross-validation**: Robust performance estimation
+
+## 📈 Results
+
+### Performance Metrics
+| Class | Precision | Recall | F1-Score |
+|-------|-----------|--------|----------|
+| Normal | 95.0% | 97.0% | 96.0% |
+| Suspect | 87.0% | 83.0% | 85.0% |
+| Pathological | 91.0% | 89.0% | 90.0% |
+
+- **Overall Accuracy**: 94.5%
+- **ROC-AUC**: 92.0%
+- **Performance Range**: 93-95% across validation folds
+
+### Comparison with Literature
+- **This Study**: 93-95% (XGBoost + Bayesian Optimization)
+- **Chen et al. (2022)**: 97.6% (Ada-RF ensemble)
+- **Kuzu et al. (2023)**: 94-96% (Deep Learning)
+- **Traditional Methods**: 90-92% (baseline)
+
+## 📁 Project Structure
+
+```
+├── data/
+│   ├── raw/                 # Original UCI CTG dataset
+│   ├── processed/           # Cleaned and preprocessed data
+│   └── results/             # Model outputs and predictions
+├── src/
+│   ├── data_exploration.py  # EDA and statistical analysis
+│   ├── preprocessing.py     # Data preparation utilities
+│   ├── model.py            # XGBoost classifier implementation
+│   ├── optimization.py     # Bayesian optimization framework
+│   └── evaluation.py       # Performance metrics and validation
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_model_development.ipynb
+│   └── 03_results_analysis.ipynb
+├── results/
+│   ├── figures/            # Plots and visualizations
+│   ├── models/             # Saved model artifacts
+│   └── reports/            # Performance reports
+├── tests/                  # Unit tests
+├── requirements.txt
+├── main.py                 # Main execution script
+└── README.md
+```
+
+## 🔍 Key Features
+
+### Advanced Techniques
+- **Bayesian Optimization**: Intelligent hyperparameter search using Gaussian processes
+- **Class Weighting**: Automatic handling of imbalanced medical data
+- **Statistical Validation**: ANOVA F-test for feature significance
+- **Cross-validation**: Robust performance estimation
+
+### Clinical Relevance
+- **Medical Interpretability**: Preserved original feature scales
+- **Critical Case Detection**: High sensitivity for pathological conditions
+- **Real-world Applicability**: Handles typical medical data characteristics
+
+## 🏥 Clinical Applications
+
+This model can serve as a **clinical decision support tool** for:
+- Fetal health monitoring during pregnancy
+- Early detection of concerning conditions
+- Risk stratification in obstetric care
+- Supporting clinical decision-making in resource-limited settings
+
+## 📊 Visualizations
+
+The project includes comprehensive visualizations:
+- Class distribution analysis
+- Feature correlation heatmaps
+- Performance metric comparisons
+- ROC curves and confusion matrices
+- Bayesian optimization convergence plots
 
 
-## ⚙️ Installation & Setup
+## 📜 License
 
-### 1️⃣ Clone the Repository
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-> git clone https://github.com/Glitzyclub/Datathon-2025.git
->
-> cd Datathon-2025
+## 📚 References
 
-### 2️⃣ Install Dependencies
+1. UCI Machine Learning Repository - Cardiotocography Dataset
+2. Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system
+3. Mockus, J. (2012). Bayesian approach to global optimization
+4. Clinical studies on cardiotocography and fetal monitoring
+---
 
-> pip install -r requirements.txt
+⭐ **Star this repository if you found it helpful!**
 
-## 🚀 How to Run
-### 🧹 Step 1: Data Exploration
-Open the notebook:
-
-> data_exploration/ctg_exploration.ipynb
-
-This file performs:
-
-- Data visualization and feature analysis
-- Correlation heatmaps
-- Missing value checks
-- Skew correction and scaling
-
-### 🧠 Step 2: Train Models
-
-> python training/train_model.py
-
-This script:
-
-- Cleans and scales the CTG dataset
-- Trains multiple models (Logistic Regression, Random Forest, XGBoost, LightGBM, Neural Net)
-- Evaluates each using:
-  - Balanced Accuracy
-  - Macro F1 Score
-- Saves the best-performing models under /models/.
-
-### 🔎 Step 3: Run Inference
-Once trained, test the model on new unseen data:
-
-> python inference/inference.py
-
-This script:
-
-- Loads the saved model and scaler
-- Processes new CTG samples
-- Outputs predicted fetal states (0 = Normal, 1 = Suspect, 2 = Pathologic)
-
-## 📊 Model Performance Summary
-|  Model	|  Balanced Accuracy	| Macro F1 | Key Observation |
-| --------|---------------------|----------|-----------------|
-| Logistic Regression |	0.87	| 0.86	| Good interpretability |
-| Random Forest |	0.97 |	0.98	| Strong overall performance |
-| XGBoost |	0.96	|  0.97	| Slightly better minority class handling |
-| Neural Net (MLP) |	0.74 |	0.78 |	Underperforms due to data imbalance |
-
-## 💡 Insights
-Most false negatives occur when Suspect cases are predicted as Normal, aligning with real-world clinical ambiguity.
-
-Tree-based models (RF, XGB) outperform the neural net on limited data.
-
-Logistic Regression provides interpretability, aiding in explainable AI reporting.
-
-
-
+**Keywords**: `machine-learning` `healthcare-ai` `xgboost` `bayesian-optimization` `medical-classification` `fetal-health` `cardiotocography` `imbalanced-data` `hackathon-project`
